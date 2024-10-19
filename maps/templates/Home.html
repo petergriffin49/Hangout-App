@@ -17,7 +17,7 @@
     {% if spots %}
         <ul>
             {% for spot in spots %}
-                <img src="{{ spot.photo.url }}">
+                <a href="/home/{{ spot.id }}/"><img src="{{ spot.photo.url }}">
                 <li> {{spot.spot_name}} </li>
                 <ul>
                     <li> {{spot.spot_description}} </li>
