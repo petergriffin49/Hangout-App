@@ -30,7 +30,7 @@ function getUserLocation() {
 const cords = getUserLocation()
 
 var zoom = 18
-var map = L.map('map').setView([coords.latitude,coords.longitude], zoom)
+var map = L.map('map').setView([cords.latitude,cords.longitude], zoom)
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
