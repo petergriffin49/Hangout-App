@@ -4,13 +4,13 @@
 
 <div id="map" style = "height: 600px; width: 600px;"></div>
 
-<script>
+<script type="text/javascript">
 // create map
 var lat = 51.505
 var long = -0.09
 
 var zoom = 18
-const map = L.map('map').setView([lat, long], zoom)
+const map = L.map('map').setView([0, 0], zoom)
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
 }).addTo(map);
@@ -47,15 +47,32 @@ async function updateUserLocation() {
     }
 }
 
-function addSpotMarkers() {
-    var spots = "{{Spot_list}}";
-    console.log(spots)
+function spotsCreateMarkers() {
+    const spots = '{{ spots|safe|escapejs }}'; /// string
+    const validJsonString = spots.replace(/'/g, '"').replace(/(\w+):/g, '"$1":');
+    const spot_data = JSON.parse(validJsonString);
+
+    let lat, long, coords, spot_obj 
+
+    for (let i = 0; i < spot_data.length; i++) {
+        spot_obj = spot_data[i]
+        lat = spot_obj.spot_latitude
+        long = spot_obj.spot_longitude
+        coords = [lat, long]
+        console.log(coords)
+        L.marker(coords).addTo(map).bindPopup(spot_obj.spot_name)
+        
+    }
+
 }
 
 
 
-updateUserLocation()
-addSpotMarkers()
+updateUserLocation() // async function
+window.onload = spotsCreateMarkers; // do once page loads
+
+
+
 
 
 </script>
