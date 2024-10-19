@@ -34,6 +34,7 @@ function getUserLocation() {
         }
     });
 }
+
 // Async function to get user's location and update map
 async function updateUserLocation() {
     try {
@@ -47,6 +48,7 @@ async function updateUserLocation() {
     }
 }
 
+// Function that creates map markers on every location
 function spotsCreateMarkers() {
     const spots = '{{ spots|safe|escapejs }}'; /// string
     const validJsonString = spots.replace(/'/g, '"').replace(/(\w+):/g, '"$1":');
