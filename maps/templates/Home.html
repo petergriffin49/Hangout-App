@@ -38,7 +38,7 @@ function getUserLocation() {
     });
 }
 // Async function to get user's location and update map
-async function updateMapLocation() {
+async function updateUserLocation() {
     try {
         const coords = await getUserLocation();
         map.setView(coords, zoom); // Update map view to new coordinates
@@ -50,8 +50,15 @@ async function updateMapLocation() {
     }
 }
 
+function addSpotMarkers() {
+    var spots = "{{Spot_list}}";
+    console.log(spots)
+}
 
-updateMapLocation()
+
+
+updateUserLocation()
+addSpotMarkers()
 
 
 

@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from .models import *
 from .forms import *
 
-# [log in crap]
+# [LOG IN CRAP (not used rn)]
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -24,10 +24,12 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
+
 # [home screen]
 def HomePage(request):
+    spot_list = Spot.objects.all()
     context = {
-        
+        "Spot_list": spot_list,
     }
     template = loader.get_template("Home.html")
-    return HttpResponse(template.render(context,request))
+    return HttpResponse(template.render(context, request))
