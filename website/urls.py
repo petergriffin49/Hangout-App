@@ -9,7 +9,6 @@ urlpatterns = [
     path('logout/', user_views.logout_view, name='logout'),
 
     path("home/", user_views.HomePage, name = 'home'),
-    path("inventory/", include("inventory.urls"), name = 'inventory'),
     path("analytics/", user_views.Analytics, name = 'analytics'),
     path('admin/', admin.site.urls),
 ]
