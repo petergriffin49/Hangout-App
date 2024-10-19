@@ -1,0 +1,6 @@
+Leaflet.js is the map library we're using
+
+currently, we are using an imbedded version (someone else hosting kinda)
+in base.html, its setup.
+
+Later down the line, must download onto local hardware instead
