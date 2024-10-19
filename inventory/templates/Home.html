@@ -2,13 +2,23 @@
 
 {% block content %}
 
-<h4>Home/map screen!</h4>
+<h8>Welcome!</h8>
 
 <div id="map" style = "height: 600px; width: 600px;"></div>
 
 <script>
 
-// GET USER LCOATION 
+// create map
+var lat = 51.505
+var long = -0.09
+
+var zoom = 18
+const map = L.map('map').setView([lat, long], zoom)
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+}).addTo(map);
+
+// Function to get user's location
 function getUserLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -27,25 +37,23 @@ function getUserLocation() {
         }
     });
 }
-async function retrieveLocationAsList() {
+// Async function to get user's location and update map
+async function updateMapLocation() {
     try {
         const coords = await getUserLocation();
-        console.log("Location as list:", coords);
-        return coords; // This is your iterable list (array)
+        map.setView(coords, zoom); // Update map view to new coordinates
+        L.marker(coords).addTo(map) // Add a marker at the new location
+            .bindPopup('You are here!')
+            .openPopup();
     } catch (error) {
         console.error(error);
     }
 }
 
-var cord_array = retrieveLocationAsList()
-console.log(cord_array);
 
-var zoom = 18
-var map = L.map('map').setView([51.505, -0.09], zoom)
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 20,
-    //attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+updateMapLocation()
+
+
 
 </script>
 
