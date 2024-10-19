@@ -13,22 +13,20 @@
     {% block content %}{% endblock content %}
 
     <!--Outputs list of hangout spots currently in the database--> 
+    <li> <a href="/addspot/"> Add Spot!</a></li>
     {% if spots %}
         <ul>
             {% for spot in spots %}
-                <li> {{spot.spot_name}} </li>
                 <img src="{{ spot.photo.url }}">
+                <li> {{spot.spot_name}} </li>
                 <ul>
                     <li> {{spot.spot_description}} </li>
                     <li> ({{spot.spot_latitude}}, {{spot.spot_longitude}}) </li>
                 </ul>
             {% endfor %}
-            <li> <a href="/addspot/"> Add Spot!</a></li>
         </ul>
     {% endif %}
 
 </body>
 </html>
-
-
 
