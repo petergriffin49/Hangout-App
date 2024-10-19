@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', user_views.logout_view, name='logout'),
 
     path("home/", user_views.HomePage, name = 'home'),
+    path("home/<int:spot_id>/", user_views.SpotPage, name="home"),
     path('admin/', admin.site.urls),
     path("addspot/", user_views.AddSpotPage, name = "addspot"),
 ]

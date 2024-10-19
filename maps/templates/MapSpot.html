@@ -1,0 +1,97 @@
+{% extends 'HomeSpot.html' %}
+
+{% block content %}
+
+<div id="map" style = "height: 600px; width: 600px;"></div>
+
+<script type="text/javascript">
+
+// create map
+var lat = 51.505
+var long = -0.09
+
+var zoom = 18
+const map = L.map('map').setView([0, 0], zoom)
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+}).addTo(map);
+
+var userIcon = L.icon({
+    iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
+    shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
+
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+var spotIcon = L.icon({
+    iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+    shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
+    
+    iconSize:     [38, 95],
+    shadowSize:   [50, 64], 
+    iconAnchor:   [22, 94],
+    shadowAnchor: [4, 62],
+    popupAnchor:  [-3, -76] 
+});
+
+function getUserLocation() {
+    return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    resolve([latitude, longitude]); // Return as an array
+                },
+                (error) => {
+                    reject(`Error retrieving location: ${error.message}`);
+                }
+            );
+        } else {
+            reject("Geolocation is not supported by this browser.");
+        }
+    });
+}
+// Async function to get user's location and update map
+async function updateUserLocation() {
+    try {
+        const coords = await getUserLocation();
+        map.setView(coords, zoom); // Update map view to new coordinates
+        L.marker(coords, {icon : userIcon}).addTo(map) // Add a marker at the new location
+            .bindPopup('You are here!')
+            .openPopup();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Function that creates map markers on every location
+function spotsCreateMarkers() {
+    const spots = '{{ cords|safe|escapejs }}'; /// string
+    const validJsonString = spots.replace(/'/g, '"').replace(/(\w+):/g, '"$1":');
+    const spot_data = JSON.parse(validJsonString);
+
+    let lat, long, coords, spot_obj 
+
+    for (let i = 0; i < spot_data.length; i++) {
+        spot_obj = spot_data[i]
+        lat = spot_obj.spot_latitude
+        long = spot_obj.spot_longitude
+        coords = [lat, long]
+        L.marker(coords, {icon: spotIcon}).addTo(map).bindPopup(spot_obj.spot_name)
+    }
+}
+
+
+updateUserLocation() // async function
+window.onload = spotsCreateMarkers; // do once page loads
+
+
+
+
+</script>
+
+{% endblock content %}

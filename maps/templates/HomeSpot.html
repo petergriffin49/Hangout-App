@@ -8,12 +8,11 @@
 </head>
 <body class="container">
 
-    <h8>Welcome to the Home Page!</h8>
+    <a href="/home/"><h1>Go Back to Homepage</h1></a>
     <!--Map stuff happens here-->
     {% block content %}{% endblock content %}
 
     <!--Outputs list of hangout spots currently in the database--> 
-    <li> <a href="/addspot/"> Add Spot!</a></li>
     {% if spots %}
         <ul>
             {% for spot in spots %}
