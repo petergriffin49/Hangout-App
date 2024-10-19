@@ -10,4 +10,5 @@ urlpatterns = [
 
     path("home/", user_views.HomePage, name = 'home'),
     path('admin/', admin.site.urls),
+    path("addspot/", user_views.AddSpotPage, name = "addspot")
 ]

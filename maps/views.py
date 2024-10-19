@@ -34,4 +34,11 @@ def HomePage(request):
     template = loader.get_template("Map.html")
     return HttpResponse(template.render(context, request))
 
+# [add page screen]
+def AddSpotPage(request):
+    template = loader.get_template("AddSpot.html")
+    ## No context... YET
+    context = {}
+    return HttpResponse(template.render(context, request))
+
 
