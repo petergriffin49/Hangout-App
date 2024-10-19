@@ -9,6 +9,17 @@
 <body class="container">
     <h8>Welcome to the Home Page!</h8>
     {% block content %}{% endblock content %}<!--Map stuff happens here-->
+    {% if Spot_list %}
+        <ul>
+            {% for spot in Spot_list %}
+                <li> {{spot.spot_name}} </li>
+                <ul>
+                    <li> {{spot.spot_description}} </li>
+                    <li> ({{spot.spot_latitude}}, {{spot.spot_longitude}}) </li>
+                </ul>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>
 
