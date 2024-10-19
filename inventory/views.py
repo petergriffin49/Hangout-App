@@ -22,7 +22,6 @@ def register(request):
 
 def logout_view(request):
     logout(request)
-    #return render(request, 'user/logout.html')
     return redirect('login')
 
 # [home screen]
@@ -30,7 +29,7 @@ def HomePage(request):
     context = {
         
     }
-    template = loader.get_template("inventory/Home.html")
+    template = loader.get_template("Home.html")
     return HttpResponse(template.render(context,request))
 
 # [analytics]
@@ -38,5 +37,5 @@ def Analytics(request):
     context = {
         
     }
-    template = loader.get_template("inventory/Analytics.html")
+    template = loader.get_template("Analytics.html")
     return HttpResponse(template.render(context,request))
