@@ -31,11 +31,3 @@ def HomePage(request):
     }
     template = loader.get_template("Home.html")
     return HttpResponse(template.render(context,request))
-
-# [analytics]
-def Analytics(request):
-    context = {
-        
-    }
-    template = loader.get_template("Analytics.html")
-    return HttpResponse(template.render(context,request))

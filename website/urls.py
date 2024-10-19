@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views 
 from django.urls import path, include
-from inventory import views as user_views
+from maps import views as user_views
 
 urlpatterns = [
     path('register/', user_views.register, name='register'),
@@ -9,6 +9,5 @@ urlpatterns = [
     path('logout/', user_views.logout_view, name='logout'),
 
     path("home/", user_views.HomePage, name = 'home'),
-    path("analytics/", user_views.Analytics, name = 'analytics'),
     path('admin/', admin.site.urls),
 ]
