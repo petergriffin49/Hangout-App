@@ -37,6 +37,8 @@ var spotIcon = L.icon({
     popupAnchor:  [-3, -76] 
 });
 
+var marker1, marker2;
+
 function getUserLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
@@ -60,9 +62,10 @@ async function updateUserLocation() {
     try {
         const coords = await getUserLocation();
         map.setView(coords, zoom); // Update map view to new coordinates
-        L.marker(coords, {icon : userIcon}).addTo(map) // Add a marker at the new location
+        marker1 = L.marker(coords, {icon : userIcon}).addTo(map) // Add a marker at the new location
             .bindPopup('You are here!')
             .openPopup();
+        
     } catch (error) {
         console.error(error);
     }
@@ -81,8 +84,14 @@ function spotsCreateMarkers() {
         lat = spot_obj.spot_latitude
         long = spot_obj.spot_longitude
         coords = [lat, long]
-        L.marker(coords, {icon: spotIcon}).addTo(map).bindPopup(spot_obj.spot_name)
+        marker2 = L.marker(coords, {icon: spotIcon}).addTo(map).bindPopup(spot_obj.spot_name)
     }
+
+    // create line from user to spot
+    let latlngs = [marker1.getLatLng(),marker2.getLatLng()]
+    var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+    map.fitBounds(polyline.getBounds());
+    
 }
 
 
