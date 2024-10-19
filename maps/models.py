@@ -1,7 +1,8 @@
 from django.db import models
 
-class Item(models.Model):
-    Item_name = models.CharField(max_length=100)
-    Item_description = models.CharField(max_length=1000)
-    Item_amount = models.IntegerField(default=1)
-    
+class Spot(models.Model):
+    spot_name = models.CharField(max_length=64)
+    spot_description = models.CharField(max_length=256)
+    spot_latitude = models.IntegerField(default=0)
+    spot_longitude = models.IntegerField(default=0)
+
