@@ -13,7 +13,6 @@ urlpatterns = [
     path("home/", user_views.HomePage, name = 'home'),
     path('admin/', admin.site.urls),
     path("addspot/", user_views.AddSpotPage, name = "addspot"),
-    path("<int:spot_id>/", user_views.SpotPage, name="spot"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
