@@ -28,8 +28,10 @@ def logout_view(request):
 # [home screen]
 def HomePage(request):
     spot_list = Spot.objects.all()
+    cord_list = Spot.objects.all().values('spot_lname','spot_latitude','spot_longitude') # context for javascript (map marker creation)
     context = {
         "spots": list(spot_list),
+        "cords": list(cord_list)
     }
     template = loader.get_template("Map.html")
     return HttpResponse(template.render(context, request))

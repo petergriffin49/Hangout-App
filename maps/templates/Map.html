@@ -70,7 +70,7 @@ async function updateUserLocation() {
 
 // Function that creates map markers on every location
 function spotsCreateMarkers() {
-    const spots = '{{ spots|safe|escapejs }}'; /// string
+    const spots = '{{ cords|safe|escapejs }}'; /// string
     const validJsonString = spots.replace(/'/g, '"').replace(/(\w+):/g, '"$1":');
     const spot_data = JSON.parse(validJsonString);
 
