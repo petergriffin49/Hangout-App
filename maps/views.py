@@ -27,11 +27,9 @@ def logout_view(request):
 
 # [home screen]
 def HomePage(request):
-    spot_list = Spot.objects.all().values('id','spot_name','spot_description','spot_latitude','spot_longitude')
+    spot_list = Spot.objects.all()
     context = {
         "spots": list(spot_list),
     }
     template = loader.get_template("Map.html")
     return HttpResponse(template.render(context, request))
-
-
