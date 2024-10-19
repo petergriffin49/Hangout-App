@@ -17,6 +17,7 @@
         <ul>
             {% for spot in spots %}
                 <li> {{spot.spot_name}} </li>
+                <img src="{{ spot.photo.url }}">
                 <ul>
                     <li> {{spot.spot_description}} </li>
                     <li> ({{spot.spot_latitude}}, {{spot.spot_longitude}}) </li>
