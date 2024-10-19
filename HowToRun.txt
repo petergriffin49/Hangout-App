@@ -1,1 +1,8 @@
-py manage.py runserver
+Test the server:
+	py manage.py runserver
+
+Flush (clear) the databse:
+	py manage.py flush
+
+Create an admin user:
+	py manage.py createsuperuser
