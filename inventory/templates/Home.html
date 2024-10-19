@@ -8,7 +8,16 @@
 
 <script>
 
-var map = L.map('map').setView([51.505,-0.09], 13)
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(sendPosition);
+  } else {
+    window.alert("Error: geolocation not supported on current os!");
+  }
+}
+
+var zoom = 20
+var map = L.map('map').setView([51.505,-0.09], zoom)
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 30,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
