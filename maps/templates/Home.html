@@ -7,8 +7,12 @@
 
 </head>
 <body class="container">
+
     <h8>Welcome to the Home Page!</h8>
-    {% block content %}{% endblock content %}<!--Map stuff happens here-->
+    <!--Map stuff happens here-->
+    {% block content %}{% endblock content %}
+
+    <!--Outputs list of hangout spots currently in the database--> 
     {% if Spot_list %}
         <ul>
             {% for spot in Spot_list %}
@@ -20,6 +24,7 @@
             {% endfor %}
         </ul>
     {% endif %}
+
 </body>
 </html>
 
