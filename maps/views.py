@@ -31,5 +31,7 @@ def HomePage(request):
     context = {
         "Spot_list": spot_list,
     }
-    template = loader.get_template("Home.html")
+    template = loader.get_template("Map.html")
     return HttpResponse(template.render(context, request))
+
+
