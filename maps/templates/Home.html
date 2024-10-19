@@ -13,9 +13,9 @@
     {% block content %}{% endblock content %}
 
     <!--Outputs list of hangout spots currently in the database--> 
-    {% if Spot_list %}
+    {% if spots %}
         <ul>
-            {% for spot in Spot_list %}
+            {% for spot in spots %}
                 <li> {{spot.spot_name}} </li>
                 <ul>
                     <li> {{spot.spot_description}} </li>
