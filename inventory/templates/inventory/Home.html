@@ -1,15 +1,11 @@
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <title>Control Room</title>
-  </head>
-  
-  <body>
-    
-    <div>
-      <h1>Hello!</h1>
-    </div>
+{% extends 'base.html' %}
 
+{% block content %}
 
-  </body>
-</html>
+<div id="map" style = "height: 600px; width: 600px;"></div>
+
+<script>
+  var map = L.map('map').setView([51.505,-0.09], 13)
+</script>
+
+{% endblock %}
