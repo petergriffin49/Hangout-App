@@ -8,7 +8,7 @@
 </head>
 <body class="container">
 
-    <h8>Welcome to the Home Page!</h8>
+    <h4>To view a specific spot, double tap its corresponding marker or image</h4>
     <!--Map stuff happens here-->
     {% block content %}{% endblock content %}
 
@@ -17,7 +17,7 @@
     {% if spots %}
         <ul>
             {% for spot in spots %}
-
+                
                 <a href="/home/{{ spot.id }}/">
                 <img src="{{ spot.photo.url }}">
                 </a>
