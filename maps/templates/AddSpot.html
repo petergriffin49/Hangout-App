@@ -9,11 +9,13 @@
 <body>
     <h2>Add a cool spot!</h2>
     <!--Submission form for new hangout spots-->
-    <form method="spot" enctype="multipart/form-data">
+    
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit new spot</button>
       </form>
+    
     <!--
     <form method="get" action="/addspot">
         <label for="SpotName">Spot name:</label><br>
@@ -29,10 +31,9 @@
         <input type="file" id="img" name="img" accept="image/*"><br><br>
         <input type="submit" value="Submit" name = "getSpot">
     </form>
-    -->
+    -->  
     <p id = "coordinates"></p>
     
-
     <script type="text/javascript">
 
         function getUserLocation() {

@@ -52,14 +52,19 @@ def SpotPage(request, spot_id):
     return HttpResponse(template.render(context, request))
 
 
+# unused add spot screen
+def AddSpotPage2(request):
+    if request.method == 'POST':
+        form = SpotForm(request.POST, request.FILES)  # Include request.FILES
+        if form.is_valid():
+            form.save()  # Save the new object
+            return redirect('home')  # Redirect to a success page
+    else:
+        form = SpotForm()
+    
+    return render(request, 'AddSpot.html', {'form': form})
+
 # [add page screen]
-def CreateSpotView(CreateView):
-
-    model = Spot
-    form_class = SpotForm
-    template_name = "AddSpot.html"
-    success_url = reverse_lazy("home")
-
 def AddSpotPage(request):
     template = loader.get_template("AddSpot.html")
     context = {}
