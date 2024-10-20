@@ -54,6 +54,14 @@ def AddSpotPage(request):
     template = loader.get_template("AddSpot.html")
     ## No context... YET
     context = {}
+    
+    if (request.GET.get("getSpot")):
+        name = request.GET.get("SpotName")
+        desc = request.GET.get("SpotDescription")
+        lat = request.GET.get("Latitude")
+        lon = request.GET.get("Longitude")
+        ph = request.GET.get("img")
+        Spot.objects.bulk_create([Spot(spot_name=name, spot_description=desc, spot_latitude=lat, spot_longitude=lon, photo=ph)])
+        return redirect("/home")   
     return HttpResponse(template.render(context, request))
-
-
+        

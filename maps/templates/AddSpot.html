@@ -9,16 +9,23 @@
 <body>
     <h2>Add a cool spot!</h2>
     <!--Submission form for new hangout spots-->
-    <form>
+    <form method="get" action="/addspot">
         <label for="SpotName">Spot name:</label><br>
         <input type="text" id="SpotName" name="SpotName" value=""><br>
         <label for="SpotDescription">Spot description:</label><br>
-        <textarea id="spotDescription" name="spotDescription" rows="4" cols="50">
+        <textarea id="SpotDescription" name="SpotDescription" rows="4" cols="50">
             </textarea><br>
-        <input type="submit" value="Submit">
+        <label for="Latitude">Spot latitude:</label><br>
+        <input type="text" id="Latitude" name="Latitude" value=""><br>
+        <label for="Longitude">Spot longitude:</label><br>
+        <input type="text" id="Longitude" name="Longitude" value=""><br>
+        <label for="img">Spot image:</label><br>
+  <input type="file" id="img" name="img" accept="image/*"><br><br>
+        <input type="submit" value="Submit" name = "getSpot">
     </form>
 
     <p id = "coordinates"></p>
+    
 
     <script type="text/javascript">
 
@@ -44,11 +51,13 @@
         async function showCoords(){
             try {
                 const coords = await getUserLocation();
-                return coords;
+                console.log(coords[0]);
+                document.getElementById("coordinates").innerHTML = "Recommended coordinates: (" + coords[0] + " , " + coords[1] + ")";
+                document.getElementById("latitude").innerHTML = coords[0]
+                document.getElementById("longitude").innerHTML = coords[1]
             } catch (error) {console.error(error);}
         }
-
-        document.getElementById("coordinates").innerHTML = showCoords()[0];
+        showCoords()
 
     </script>
 
