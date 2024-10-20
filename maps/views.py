@@ -31,10 +31,11 @@ def HomePage(request):
     cord_list = Spot.objects.all().values('spot_name','spot_latitude','spot_longitude') # context for javascript (map marker creation)
     context = {
         "spots": list(spot_list),
-        "cords": list(cord_list)
+        "cords": list(cord_list),
     }
     template = loader.get_template("Map.html")
     return HttpResponse(template.render(context, request))
+
 
 # specific spot screen (same shit as home basically)
 def SpotPage(request, spot_id):
@@ -43,11 +44,9 @@ def SpotPage(request, spot_id):
     context = {
         "spots": list(spot_list),
         "cords": list(cord_list),
-        "navigate" : "true",
     }
     template = loader.get_template("MapSpot.html")
     return HttpResponse(template.render(context, request))
-
 
 
 # [add page screen]
