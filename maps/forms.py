@@ -13,4 +13,11 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
-        
+
+class SpotForm(forms.ModelForm):
+
+    class Meta:
+        model = Spot
+        fields = ["spot_name", "spot_description", "spot_latitude", "spot_longitude", "photo"]
+
+

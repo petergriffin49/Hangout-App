@@ -4,6 +4,9 @@ from django.template import loader
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.urls import reverse_lazy 
+from django.views.generic import ListView, CreateView
 from math import *
 from .models import *
 from .forms import *
@@ -50,18 +53,40 @@ def SpotPage(request, spot_id):
 
 
 # [add page screen]
+def CreateSpotView(CreateView):
+
+    model = Spot
+    form_class = SpotForm
+    template_name = "AddSpot.html"
+    success_url = reverse_lazy("home")
+
 def AddSpotPage(request):
     template = loader.get_template("AddSpot.html")
-    ## No context... YET
     context = {}
-    
+
     if (request.GET.get("getSpot")):
         name = request.GET.get("SpotName")
         desc = request.GET.get("SpotDescription")
         lat = request.GET.get("Latitude")
         lon = request.GET.get("Longitude")
+
         ph = request.GET.get("img")
-        Spot.objects.bulk_create([Spot(spot_name=name, spot_description=desc, spot_latitude=lat, spot_longitude=lon, photo=ph)])
+        photo_data = InMemoryUploadedFile(
+            file=request.FILES['image'], 
+            field_name='image', 
+            name='image.jpg', 
+            content_type='image/jpeg', 
+            size=len(request.FILES['image'].read()), 
+            charset=None
+        )
+    
+        Spot.objects.bulk_create([Spot(spot_name=name, spot_description=desc, spot_latitude=lat, spot_longitude=lon, photo=photo_data)])
         return redirect("/home")   
-    return HttpResponse(template.render(context, request))
+    
+    return HttpResponse(template.render(context, request))  
+
+
+
+
+    
         

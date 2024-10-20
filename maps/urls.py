@@ -1,10 +1,9 @@
 from django.urls import path
 from . import views
+from .views import CreatePostView 
 
 urlpatterns = [
     path("", views.HomePage, name="maps"),
-<<<<<<< Updated upstream
-=======
     path("<int:spot_id>/", views.SpotPage, name="spot home"),
->>>>>>> Stashed changes
+    path("addspot/", CreateSpotView.as_view(), name = "add_spot"),
 ]
