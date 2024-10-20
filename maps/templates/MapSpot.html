@@ -86,7 +86,7 @@ function spotsCreateMarkers() {
         coords = [lat, long]
         marker2 = L.marker(coords, {icon: spotIcon}).addTo(map).bindPopup(spot_obj.spot_name)
     }
-
+    
     // create line from user to spot
     let latlngs = [marker1.getLatLng(),marker2.getLatLng()]
     var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);

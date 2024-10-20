@@ -59,6 +59,8 @@ function getUserLocation() {
 async function updateUserLocation() {
     try {
         const coords = await getUserLocation();
+        lat = coords[0]
+        long = coords[1]
         map.setView(coords, zoom); // Update map view to new coordinates
         L.marker(coords, {icon : userIcon}).addTo(map) // Add a marker at the new location
             .bindPopup('You are here!')
@@ -84,7 +86,6 @@ function spotsCreateMarkers() {
         L.marker(coords, {icon: spotIcon}).addTo(map).bindPopup(spot_obj.spot_name)
     }
 }
-
 
 updateUserLocation() // async function
 window.onload = spotsCreateMarkers; // do once page loads

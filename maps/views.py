@@ -4,6 +4,7 @@ from django.template import loader
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from math import *
 from .models import *
 from .forms import *
 
@@ -23,7 +24,6 @@ def register(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
-
 
 # [home screen]
 def HomePage(request):

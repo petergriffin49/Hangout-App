@@ -13,7 +13,7 @@
     {% block content %}{% endblock content %}
 
     <!--Outputs list of hangout spots currently in the database--> 
-    <li> <a href="/addspot/"> Add Spot!</a></li>
+    <a href="/addspot/"><h3>-Add a new spot-</h3></a>
     {% if spots %}
         <ul>
             {% for spot in spots %}
@@ -25,8 +25,9 @@
                 <li> {{spot.spot_name}} </li>
                 <ul>
                     <li> {{spot.spot_description}} </li>
-                    <li> ({{spot.spot_latitude}}, {{spot.spot_longitude}}) </li>
+                    <li id="latlong"> ({{spot.spot_latitude}} {{spot.spot_longitude}}) </li>
                 </ul>
+
             {% endfor %}
         </ul>
     {% endif %}
