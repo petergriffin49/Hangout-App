@@ -58,10 +58,18 @@
         async function showCoords(){
             try {
                 const coords = await getUserLocation();
-                console.log(coords[0]);
-                document.getElementById("coordinates").innerHTML = "Recommended coordinates: (" + coords[0] + " , " + coords[1] + ")";
-                document.getElementById("latitude").innerHTML = coords[0]
-                document.getElementById("longitude").innerHTML = coords[1]
+
+                //document.getElementById("coordinates").innerHTML = "Recommended coordinates: (" + coords[0] + " , " + coords[1] + ")";
+
+                const spotLat = document.querySelector('input[name="spot_latitude"]');
+                if (spotLat) {
+                    spotLat.value = coords[0]; 
+                }
+                const spotLong = document.querySelector('input[name="spot_longitude"]');
+                if (spotLong) {
+                    spotLong.value = coords[1];
+                }
+
             } catch (error) {console.error(error);}
         }
         showCoords()

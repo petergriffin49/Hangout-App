@@ -52,7 +52,7 @@ def SpotPage(request, spot_id):
     return HttpResponse(template.render(context, request))
 
 
-# unused add spot screen
+# [add spot screen with premade form class] (used)
 def AddSpotPage2(request):
     if request.method == 'POST':
         form = SpotForm(request.POST, request.FILES)  # Include request.FILES
@@ -64,7 +64,7 @@ def AddSpotPage2(request):
     
     return render(request, 'AddSpot.html', {'form': form})
 
-# [add page screen]
+# [add page screen] (UNused)
 def AddSpotPage(request):
     template = loader.get_template("AddSpot.html")
     context = {}
