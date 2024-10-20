@@ -4,14 +4,28 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <style>
-        body {background-color: CadetBlue;}
-        font-family: "verdana";
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <style> 
+        body {
+            background-color: CadetBlue;
+            font-family: "verdana";
+        }
+        ul{
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margins */
+        }
+        li {
+            padding: 0px 10px; /* Less horizontal padding */
+            margin-bottom: 5px; /* Space between list items */
+        }
     </style>
 </head>
 <body class="container">
 
-    <h8>Welcome to the Home Page!</h8>
+    <h5 style="padding: 0; margin: 1px;">To view a spot, double tap its marker on the map or its image underneath</h5>
     <!--Map stuff happens here-->
     {% block content %}{% endblock content %}
 
@@ -21,13 +35,13 @@
         <ul>
             {% for spot in spots %}
                 <a href="/home/{{ spot.id }}/">
-                <img src="{{ spot.photo.url }}">
+                <img src="{{ spot.photo.url }}" style="width: 90vw;">
                 </a>
                 
-                <li> {{spot.spot_name}} </li>
+                <li> <h2>{{spot.spot_name}}</h2> </li>
                 <ul>
-                    <li> {{spot.spot_description}} </li>
-                    <li id="latlong"> ({{spot.spot_latitude}} {{spot.spot_longitude}}) </li>
+                    <li> <h4>{{spot.spot_description}}</h4></li>
+                    <!--<li id="latlong"> ({{spot.spot_latitude}} {{spot.spot_longitude}}) </li>-->
                 </ul>
             {% endfor %}
         </ul>

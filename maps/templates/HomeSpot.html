@@ -4,8 +4,22 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <style>
-        body {background-color: CadetBlue;}
+        body {
+            background-color: CadetBlue;
+            font-family: "verdana";
+        }
+        ul{
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove padding */
+            margin: 0; /* Remove margins */
+        }
+        li {
+            padding: 0px 10px; /* Less horizontal padding */
+            margin-bottom: 5px; /* Space between list items */
+        }
     </style>
 </head>
 <body class="container">
@@ -13,19 +27,18 @@
     <a href="/home/"><h2>Back to Homepage</h2></a>
     <!--Map stuff happens here-->
     {% block content %}{% endblock content %}
-
+    <h1></h1>
     <!--Outputs list of hangout spots currently in the database--> 
     {% if spots %}
         <ul>
             {% for spot in spots %}
-
                 <a href="/home/{{ spot.id }}/">
-                <img src="{{ spot.photo.url }}">
+                <img src="{{ spot.photo.url }}" style="width: 90vw;">
                 </a>
                 
-                <li> {{spot.spot_name}} </li>
+                <li> <h2>{{spot.spot_name}}</h2> </li>
                 <ul>
-                    <li> {{spot.spot_description}} </li>
+                    <li> <h4>{{spot.spot_description}}</h4> </li>
                     <li> ({{spot.spot_latitude}}, {{spot.spot_longitude}}) </li>
                 </ul>
             {% endfor %}
