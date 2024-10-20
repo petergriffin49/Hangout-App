@@ -17,7 +17,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var userIcon = L.icon({
-    iconUrl: 'user.png',
+    iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
     shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
 
     iconSize:     [38, 95], // size of the icon
@@ -89,7 +89,7 @@ function spotsCreateMarkers() {
         long = spot_obj.spot_longitude
         id = spot_obj.id 
         coords = [lat, long]
-        L.marker(coords, {icon: spotIcon}).on('dblclick', markerClick, id).addTo(map).bindPopup(spot_obj.spot_name).on('click', function() {markerClick(id);});
+        L.marker(coords, {icon: spotIcon}).addTo(map).bindPopup(spot_obj.spot_name).on('dblclick', function() {markerClick(id);});
     }
 }
 

@@ -90,3 +90,4 @@ def AddSpotPage(request):
         return redirect("/home")   
     
     return HttpResponse(template.render(context, request))  
+
