@@ -4,12 +4,47 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    
+    <style>
+        body {background-color: CadetBlue;}
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid DarkBlue;
+            border-radius: 4px;
+            background-color: PowderBlue;
+          }
+
+        input[type=number] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid DarkBlue;
+            border-radius: 4px;
+            background-color: PowderBlue;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid DarkBlue;
+            border-radius: 4px;
+            background-color: PowderBlue;
+        }
+
+    </style>
 </head>
 <body>
-    <h2>Add a cool spot!</h2>
+    <h2><p class="small">Add a cool spot!</p></h2>
     <!--Submission form for new hangout spots-->
-    
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
