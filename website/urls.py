@@ -12,6 +12,7 @@ urlpatterns = [
 
     path("home/", user_views.HomePage, name = 'home'),
     path("home/<int:spot_id>/", user_views.SpotPage, name="home_spot"),
+    path("home/user.png/", user_views.imagePage, name="user_image"),
     path('admin/', admin.site.urls),
     path("addspot/", user_views.AddSpotPage2, name = "addspot"),
     

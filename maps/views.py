@@ -11,6 +11,7 @@ from math import *
 from .models import *
 from .forms import *
 
+
 # [LOG IN CRAP (not used rn)]
 def register(request):
     if request.method == 'POST':
@@ -89,9 +90,3 @@ def AddSpotPage(request):
         return redirect("/home")   
     
     return HttpResponse(template.render(context, request))  
-
-
-
-
-    
-        
