@@ -11,6 +11,7 @@ from math import *
 from .models import *
 from .forms import *
 
+
 # [LOG IN CRAP (not used rn)]
 def register(request):
     if request.method == 'POST':
@@ -31,7 +32,7 @@ def logout_view(request):
 # [home screen]
 def HomePage(request):
     spot_list = Spot.objects.all()
-    cord_list = Spot.objects.all().values('spot_name','spot_latitude','spot_longitude') # context for javascript (map marker creation)
+    cord_list = Spot.objects.all().values('id','spot_name','spot_latitude','spot_longitude') # context for javascript (map marker creation)
     context = {
         "spots": list(spot_list),
         "cords": list(cord_list),
@@ -43,7 +44,7 @@ def HomePage(request):
 # specific spot screen (same shit as home basically)
 def SpotPage(request, spot_id):
     spot_list = Spot.objects.filter(id=spot_id)
-    cord_list = Spot.objects.filter(id=spot_id).values('spot_name','spot_latitude','spot_longitude') # context for javascript (map marker creation)
+    cord_list = Spot.objects.filter(id=spot_id).values('id','spot_name','spot_latitude','spot_longitude') # context for javascript (map marker creation)
     context = {
         "spots": list(spot_list),
         "cords": list(cord_list),
@@ -90,8 +91,3 @@ def AddSpotPage(request):
     
     return HttpResponse(template.render(context, request))  
 
-
-
-
-    
-        
