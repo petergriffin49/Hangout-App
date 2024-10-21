@@ -87,8 +87,9 @@ function spotsCreateMarkers() {
         spot_obj = spot_data[i]
         lat = spot_obj.spot_latitude
         long = spot_obj.spot_longitude
-        id = spot_obj.id 
         coords = [lat, long]
+        let id = spot_data[i].id    
+        
         L.marker(coords, {icon: spotIcon}).addTo(map).bindPopup(spot_obj.spot_name).on('dblclick', function() {markerClick(id);});
     }
 }
